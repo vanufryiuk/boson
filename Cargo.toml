@@ -3,7 +3,7 @@ name = "boson"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-clap = "4.5.2"
+clap = { version = "4.5.2", features = ["derive"] }
+pest = "2.7.8"
+pest_derive = "2.7.8"

@@ -1,3 +1,9 @@
+mod cli;
+
+use clap::Parser;
+use cli::BosonCli;
+
 fn main() {
-    println!("Hello, world!");
+    let args = BosonCli::parse();
+    println!("{args:?}");
 }

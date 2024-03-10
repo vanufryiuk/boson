@@ -1,0 +1,6 @@
+WHITESPACE = _{ " " | "\t" | NEWLINE }
+
+LINE_COMMENT = { "//" ~ (!NEWLINE ~ ANY)* ~ NEWLINE }
+BLOCK_COMMENT = { "/*" ~ (!"*/" ~ ANY)* ~ "*/" }
+
+COMMENT = { LINE_COMMENT | BLOCK_COMMENT }
