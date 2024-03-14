@@ -1,4 +1,4 @@
-# DR000001 - Memory Management
+# DR000001 Execution Target
 
 ## Problem Definition
 
@@ -6,7 +6,7 @@ Memory management is a conceptual programming language task. A programming langu
 
 ## Accepted Benchmarks
 
-## 1. Automated Deallocation
+## 1. Runtime Optimizations
 
 ### Definition
 
