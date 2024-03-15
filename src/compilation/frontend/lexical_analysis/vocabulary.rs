@@ -1,5 +1,6 @@
-pub enum TokenType {
+use logos::Logos;
+
+#[derive(Logos)]
+pub enum Token {
 
 }
-
-pub struct Token 
