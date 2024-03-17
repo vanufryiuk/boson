@@ -1,1 +1,1 @@
-pub mod grammar;
+lalrpop_mod!(pub grammar);
