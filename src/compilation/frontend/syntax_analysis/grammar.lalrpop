@@ -1,7 +1,45 @@
-grammar;
+use crate::compilation::frontend::lexical_analysis::vocabulary::{Token, CompilationError};
+use crate::compilation::frontend::syntax_analysis::ast;
+
+grammar<'source>;
+
+extern {
+    type Location = usize;
+    type Error = CompilationError;
+
+    enum Token<'source> {
+        "whitespace"    => Token::Whitespace,
+        "use keyword"   => Token::KeywordUse,
+        "identity"      => Token::Identity(<&'source str>),
+        "dot"           => Token::OperatorDot,
+        "comma"         => Token::OperatorComma,
+        "asterisk"      => Token::OperatorAsterisk,
+        "left brace"    => Token::OperatorBraceLeft,
+        "right brace"   => Token::OperatorBraceRight,
+        "semicolon"     => Token::OperatorSemicolon
+    }
+}
 
 pub Statement = {
     <UseStatement>
 }
 
-UseStatement = {}
+UseStatement: ast::UseStatement = {
+    "use keyword" "whitespace" <t:UseTarget> "semicolon" => ast::UseStatement { target = t }
+}
+
+SimpleUseTarget = {
+    "identity",
+    <SimpleUseTarget> "dot" "identity",
+}
+
+UseTarget = {
+    <SimpleUseTarget>,
+    <SimpleUseTarget> "dot" "asterisk",
+    <SimpleUseTarget> "dot" "left brace" <UseTargetList> "right brace"
+}
+
+UseTargetList = {
+    <UseTarget>,
+    <UseTargetList> "comma" <UseTarget>
+}
